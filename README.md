@@ -8,3 +8,4 @@
 - Show/Hide the form to add a new User
 - Add a new User
 - Filter the Users based on their gender
+- Search for a user by the name
