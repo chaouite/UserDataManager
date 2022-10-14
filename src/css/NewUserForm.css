@@ -1,0 +1,53 @@
+.new-user-form {
+  background-color: #6591c0;
+  margin-top: 10px;
+  border: 1px solid rgb(17, 94, 146);
+  border-radius: 20px;
+  width: 200px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.new-user-form input {
+  border-radius: 8px;
+  border: none;
+  margin-left: 10px;
+  width: 150px;
+  height: 20px;
+  padding-left: 10px;
+
+}
+
+.new-user-form label {
+  font-size: 12px;
+  padding-top: 10px;
+  width: 150px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  display: flex;
+}
+
+.new-user-form select {
+  border-radius: 8px;
+  border: none;
+  margin-left: 10px;
+  max-width: 75px;
+  padding-left: 4px;
+
+}
+
+.new-user-form p {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 11px;
+}
+
+.new-user-form input:focus {
+  border-color: red;
+  background-color: lightblue;
+}
+
+.new-user-form button {
+  height: 30px;
+  width: 70px;
+}
