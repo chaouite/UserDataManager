@@ -19,4 +19,4 @@ This [`website`](https://www.mockaroo.com/) is used to mock the data.
 
 --- 
 ## PS
-This code works 100%, but it's still under improvement. `I welcome any refactoring or suggestions :smile:` 
+This code works 100%, but it's still under improvement. `I welcome any refactoring or suggestions 😄` 
