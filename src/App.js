@@ -9,8 +9,11 @@ const App = () => {
 
   const [updatedUsers, setUpdatedUsers] = useState(users);
   const [filteredUsers, setFilteredUsers] = useState(updatedUsers);
+  const [searchedUsers, setSearchedUser] = useState(filteredUsers);
   const [show, setShow] = useState(false);
   const [filteredBy, setFilteredBy] = useState('All');
+
+  const [isSearch, setIsSearch] = useState(false);
 
   const filterTopHandler = (filterBy) => {
     setFilteredBy(filterBy);
@@ -36,13 +39,45 @@ const App = () => {
         filteredBy === 'All') {
         return ([...prev, newUser]);
       };
-
       return prev;
     }
     );
   }
-  useEffect(() => { console.log(updatedUsers); }, [updatedUsers])
-  useEffect(() => { console.log(filteredUsers); }, [filteredUsers])
+
+  const searchForHandler = (searchedName) => {
+    setIsSearch(true);
+    setSearchedUser(filteredUsers);
+    console.log(searchedName);
+    setSearchedUser((prev) => {
+      return prev.filter((user) => {
+        if (searchedName.length === 0) {
+          setIsSearch(false);
+          return filteredUsers;
+        } return (
+          user.firstName.toLowerCase().includes(searchedName.toLowerCase()) ||
+          user.lastName.toLowerCase().includes(searchedName.toLowerCase()));
+      }
+      )
+    });
+
+  }
+
+  const toDelete = (firstName, lastName) => {
+    console.log(firstName, lastName);
+    setUpdatedUsers((prev) => {
+      return prev.filter((user) => user.firstName !== firstName ||
+        user.lastName !== lastName);
+    })
+
+  }
+
+  useEffect(() => {
+    setFilteredUsers(updatedUsers);
+  }, [updatedUsers]);
+  useEffect(() => { console.log('updatedUsers', updatedUsers); }, [updatedUsers])
+  useEffect(() => { console.log('filteredUsers', filteredUsers); }, [filteredUsers])
+  useEffect(() => { console.log('searchedUsers', searchedUsers); }, [searchedUsers])
+
   return (
     <div className="App" >
 
@@ -54,8 +89,10 @@ const App = () => {
           <NewUserForm getNewUser={getNewUser}></NewUserForm>
         }
         <UsersInfo
+          searchForHandler={searchForHandler}
           filterTopHandler={filterTopHandler}
-          data={filteredUsers} />
+          data={isSearch ? searchedUsers : filteredUsers}
+          toDelete={toDelete} />
 
       </Card>
     </div >

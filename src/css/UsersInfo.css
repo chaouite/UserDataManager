@@ -3,17 +3,13 @@
   display: flex;
   background-color: #6591c0;
   margin-top: 10px;
-  border: 1px solid rgb(17, 94, 146);
   border-radius: 20px;
   color: black;
-
 }
 
 .users-Info header {
   color: #334b64;
 }
-
-
 
 
 .users-Info p {
@@ -27,5 +23,8 @@
 .users-Info h4 {
   color: rgb(255, 255, 255);
   margin-left: 10px;
+}
 
+.users-Info-Button button {
+  width: 100px;
 }
