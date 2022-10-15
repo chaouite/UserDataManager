@@ -8,22 +8,31 @@ import React, { useEffect, useState } from 'react';
 const App = () => {
 
   const [updatedUsers, setUpdatedUsers] = useState(users);
-  const [filteredUsers, setFilteredUsers] = useState(updatedUsers);
-  const [searchedUsers, setSearchedUser] = useState(filteredUsers);
+  let filteredUsers = updatedUsers;
+  let searchedUsers = updatedUsers;
   const [show, setShow] = useState(false);
-  const [filteredBy, setFilteredBy] = useState('All');
+  const [filterValue, setFilterValue] = useState('All');
+  const [searchedUser, setSearchedUser] = useState('');
 
   const [isSearch, setIsSearch] = useState(false);
 
+  /** Get the value that we want to use in the filter. */
   const filterTopHandler = (filterBy) => {
-    setFilteredBy(filterBy);
-    setFilteredUsers(updatedUsers);
-    if (filterBy !== 'All') {
-      setFilteredUsers((prev) => {
-        return prev.filter((user) => user.gender === filterBy);
-      })
-    }
+    setFilterValue(filterBy);
   }
+  /** we don't need to store a new state for filtered users
+   * because the main state is updatedUsers and if we filter we don't want to change this state 
+   * we only want to render a part of this main state 
+   * that fulfils a specific condition
+   * --- we can put this code outside any function 
+   * because we are not changing the main state here 
+   * we are just affecting new value to our let filteredUsers--
+   */
+  if (filterValue !== 'All') {
+    filteredUsers = updatedUsers.filter((user) => user.gender === filterValue);
+  }
+
+  /** getNewUser adds a new user to the main state = updatedUsers */
   const getNewUser = (newUser) => {
     setUpdatedUsers((prev) => {
       return (
@@ -31,49 +40,32 @@ const App = () => {
       );
     }
     );
-    setFilteredUsers((prev) => {
-
-      if (
-        prev.length === 0 ||
-        prev[0].gender === newUser.gender ||
-        filteredBy === 'All') {
-        return ([...prev, newUser]);
-      };
-      return prev;
-    }
-    );
   }
 
   const searchForHandler = (searchedName) => {
-    setIsSearch(true);
-    setSearchedUser(filteredUsers);
+    setSearchedUser(searchedName);
+    setIsSearch(true)
     console.log(searchedName);
-    setSearchedUser((prev) => {
-      return prev.filter((user) => {
-        if (searchedName.length === 0) {
-          setIsSearch(false);
-          return filteredUsers;
-        } return (
-          user.firstName.toLowerCase().includes(searchedName.toLowerCase()) ||
-          user.lastName.toLowerCase().includes(searchedName.toLowerCase()));
-      }
-      )
-    });
-
   }
 
+  /** --- we can put this code outside any function 
+   * because we are not changing the main state here 
+   * we are just affecting new value to our let searchedUsers-- */
+  searchedUsers = updatedUsers.filter((user) =>
+    user.firstName.toLowerCase().includes(searchedUser.toLowerCase()) ||
+    user.lastName.toLowerCase().includes(searchedUser.toLowerCase())
+  )
+
+  /** toDelete will update the updatedUsers which is the main state
+   */
   const toDelete = (firstName, lastName) => {
     console.log(firstName, lastName);
     setUpdatedUsers((prev) => {
       return prev.filter((user) => user.firstName !== firstName ||
         user.lastName !== lastName);
     })
-
   }
 
-  useEffect(() => {
-    setFilteredUsers(updatedUsers);
-  }, [updatedUsers]);
   useEffect(() => { console.log('updatedUsers', updatedUsers); }, [updatedUsers])
   useEffect(() => { console.log('filteredUsers', filteredUsers); }, [filteredUsers])
   useEffect(() => { console.log('searchedUsers', searchedUsers); }, [searchedUsers])
@@ -91,7 +83,9 @@ const App = () => {
         <UsersInfo
           searchForHandler={searchForHandler}
           filterTopHandler={filterTopHandler}
-          data={isSearch ? searchedUsers : filteredUsers}
+          data={isSearch ? searchedUsers :
+            filteredUsers
+          }
           toDelete={toDelete} />
 
       </Card>
