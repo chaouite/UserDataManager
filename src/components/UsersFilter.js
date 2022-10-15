@@ -11,7 +11,7 @@ const UsersFilter = (props) => {
         <option vale='All'>All</option>
         <option vale='Male'>Male</option>
         <option vale='Female'>Female</option>
-        <option vale='Non-Bi'>Non-Bi</option>
+        <option vale='Divers'>Divers</option>
       </select>
     </div>
   )

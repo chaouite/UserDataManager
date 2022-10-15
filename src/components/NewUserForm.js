@@ -47,7 +47,7 @@ const NewUserForm = (props) => {
         >
           <option value='Female'>Female</option>
           <option value='Male'>Male</option>
-          <option value='Non-Bi'>Non-Bi</option>
+          <option value='Divers'>Divers</option>
         </select>
       </p>
       <button type='submit'>Save</button>
