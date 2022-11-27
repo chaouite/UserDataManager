@@ -1,6 +1,9 @@
 import React from 'react';
 import '../css/UsersFilter.css';
 
+/**gets the choice of the user = the value to be used in the filter
+ * and lifts is up to the UsersInfo-Comp
+ */
 const UsersFilter = (props) => {
 
   return (

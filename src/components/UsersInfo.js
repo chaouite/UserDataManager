@@ -5,16 +5,17 @@ import UsersFilter from './UsersFilter';
 /* This FC displays the users  */
 const UsersInfo = (props) => {
 
-  //const [filterBy, setFilterBy] = useState('');
-
+  /**retrieves the value to be used in the filter from UsersFilter-Comp 
+   * and lifts it up to App-Comp */
   const filterHandler = (valOfFilter) => {
-    //setFilterBy(valOfFilter);
     props.filterTopHandler(valOfFilter);
   }
+  /**retrieves the value to be searched from UserSearch-Comp
+   *  and lifts it up to App-Comp */
   const searchFor = (searchedName) => {
     props.searchForHandler(searchedName);
   }
-  //useEffect(() => { console.log(filterBy); }, [filterBy]);
+
   return (
     <div className="users-Info">
 
@@ -25,12 +26,21 @@ const UsersInfo = (props) => {
       <UsersFilter filterHandler={filterHandler} />
       {props.data.map((user, index) => {
         return (
-          //I didn't use here the user.id as an index because if
-          // the array = data = users selected to be shown
-          // is empty, we won't have any element in the array
-          // we can't use user.id.
+          /**
+           * $$Explanation
+           * I didn't use here the user.id as an index because if
+           * the array = data = users selected to be shown
+           * might be empty(exp: when I try to search with a value that
+           * doesn't exist in the state = array),
+           * If we won't have any element in the array
+           *  we can't use user.id. That's why:
+           * The use of the index is safer. 
+           * */
           <div key={index}>
             <div className='users-Info-Button'>
+              {/** 
+              * lifts up first and last name to the user to be deleted
+             */}
               <button onClick={() => {
                 props.toDelete(user.firstName, user.lastName);
               }}>delete</button>

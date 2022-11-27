@@ -8,10 +8,14 @@ const NewUserForm = (props) => {
   const [gender, setGender] = useState('Male');
 
   const formSubmitHandler = (e) => {
+
+    //prevents the http request and the redirecting to the 'URL/?'
     e.preventDefault();
+    //sends the entered values of the form as one object {firstName,lastName,gender} to App-Comp
     props.getNewUser({
       firstName, lastName, gender
     });
+    //resets the form
     setFirstName('');
     setLastName('');
     setGender('Male');
@@ -24,7 +28,7 @@ const NewUserForm = (props) => {
       <p>
         <label>First name </label>
         <input
-          placeholder=' enter the first name'
+          placeholder='enter the first name'
           value={firstName}
           onChange={(e) => { setFirstName(e.target.value) }}
           required
@@ -33,7 +37,7 @@ const NewUserForm = (props) => {
       <p>
         <label>Last name </label>
         <input
-          placeholder=' enter the last name'
+          placeholder='enter the last name'
           value={lastName}
           onChange={(e) => { setLastName(e.target.value) }}
           required
