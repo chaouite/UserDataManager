@@ -14,7 +14,6 @@
   width: 150px;
   height: 20px;
   padding-left: 10px;
-
 }
 
 .new-user-form label {
@@ -24,6 +23,14 @@
   margin-left: 10px;
   margin-bottom: 5px;
   display: flex;
+}
+
+.new-user-form .invalid label {
+  color: rgb(220, 12, 12);
+}
+
+.new-user-form .invalid input:focus {
+  background-color: rgb(244, 124, 124);
 }
 
 .new-user-form select {

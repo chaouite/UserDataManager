@@ -17,7 +17,15 @@ The users in the application aren't stored anywhere nor retrieved from any base 
 
 This [`website`](https://www.mockaroo.com/) is used to mock the data. 
 
---- 
+---
+## Some features  (still loading ...)
+
+Check if the first and last names are valid (not white spaces)
+
+Explanation for certain choices (check the comments starting with $$Explanation)
+
+---
+
 ## PS
 This code works, but it's still under improvement. 
 # `I welcome any refactoring || suggestions || Feedback 😄` 
