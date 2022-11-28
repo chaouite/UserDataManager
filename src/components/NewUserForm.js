@@ -1,6 +1,43 @@
 import React, { useState } from 'react';
-import '../css/NewUserForm.css'
+import '../css/NewUserForm.css';
+import styled from 'styled-components';
 
+const FormController = styled.p`
+display: flex;
+justify-content: center;
+flex-direction: column;
+margin: 11px;
+& input {
+  border-radius: 8px;
+  border: none;
+  margin-left: 10px;
+  width: 150px;
+  height: 20px;
+  padding-left: 10px;
+}
+
+& label {
+  font-size: 12px;
+  padding-top: 10px;
+  width: 150px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  color: ${props => (!props.isValid && 'rgb(220, 12, 12)')}
+}
+& input:focus{
+  background-color: ${props => (!props.isValid && 'rgb(235, 149, 149)')} ;
+}
+
+& select {
+  border-radius: 8px;
+  border: none;
+  margin-left: 10px;
+  max-width: 75px;
+  padding-left: 4px;
+}
+
+`;
 const NewUserForm = (props) => {
 
   const [firstName, setFirstName] = useState('');
@@ -34,7 +71,12 @@ const NewUserForm = (props) => {
     <form
       className='new-user-form'
       onSubmit={formSubmitHandler}>
-      <p className={`${isFirstNameValid ? '' : 'invalid'}`}>
+      {/** $$Explanation
+       * Here if we wanted to use a normal styling for the comp
+       * <p className={`${isLastNameValid ? '' : 'invalid'}`}></p>
+       * --- But here we want to use styled-component package
+       * */}
+      <FormController isValid={isFirstNameValid}>
         <label>First name </label>
         <input
           placeholder='enter the first name'
@@ -55,8 +97,9 @@ const NewUserForm = (props) => {
           }}
           required
         ></input>
-      </p>
-      <p className={`${isLastNameValid ? '' : 'invalid'}`}>
+      </FormController>
+
+      <FormController isValid={isLastNameValid} >
         <label>Last name </label>
         <input
           placeholder='enter the last name'
@@ -67,12 +110,11 @@ const NewUserForm = (props) => {
             if (e.target.value.trim().length === 0) {
               setIsLastNameValid(false);
             } else setIsLastNameValid(true);
-
           }}
           required
         ></input>
-      </p>
-      <p>
+      </FormController>
+      <FormController isValid={true}>
         <label>Gender </label>
         <select
           value={gender}
@@ -82,7 +124,7 @@ const NewUserForm = (props) => {
           <option value='Male'>Male</option>
           <option value='Divers'>Divers</option>
         </select>
-      </p>
+      </FormController>
       <button type='submit'>Save</button>
 
     </form >

@@ -7,53 +7,6 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.new-user-form input {
-  border-radius: 8px;
-  border: none;
-  margin-left: 10px;
-  width: 150px;
-  height: 20px;
-  padding-left: 10px;
-}
-
-.new-user-form label {
-  font-size: 12px;
-  padding-top: 10px;
-  width: 150px;
-  margin-left: 10px;
-  margin-bottom: 5px;
-  display: flex;
-}
-
-.new-user-form .invalid label {
-  color: rgb(220, 12, 12);
-}
-
-.new-user-form .invalid input:focus {
-  background-color: rgb(244, 124, 124);
-}
-
-.new-user-form select {
-  border-radius: 8px;
-  border: none;
-  margin-left: 10px;
-  max-width: 75px;
-  padding-left: 4px;
-
-}
-
-.new-user-form p {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin: 11px;
-}
-
-.new-user-form input:focus {
-  border-color: red;
-  background-color: lightblue;
-}
-
 .new-user-form button {
   height: 30px;
   width: 70px;

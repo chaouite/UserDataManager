@@ -22,6 +22,8 @@ This [`website`](https://www.mockaroo.com/) is used to mock the data.
 
 Check if the first and last names are valid (not white spaces)
 
+Implementation of style-component package with VSCode-styled-component extension (_The package has been used with the inputs of the form to add new user_)
+
 Explanation for certain choices (check the comments starting with $$Explanation)
 
 ---
